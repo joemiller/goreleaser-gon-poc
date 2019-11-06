@@ -2,3 +2,4 @@ dist/
 .envrc
 *.dmg
 goreleaser-gon-poc
+gon
