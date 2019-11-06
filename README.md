@@ -20,4 +20,5 @@ Issues
 ------
 
 goreleaser will notarize all binaries including the Windows and Linux binaries. This will succeed but it is probably
-pointless. Goreleaser would need a way to filter the `gon` signing to specific OS's or build id's.
+pointless and adds considerable time to the build process due to the unpredictability of Apple's notarization API.
+Goreleaser would need a way to filter the `gon` signing to specific OS's or build id's.
