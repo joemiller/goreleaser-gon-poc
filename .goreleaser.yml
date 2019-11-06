@@ -33,7 +33,7 @@ changelog:
 
 # GPG signing and macOS codesigning + notarization with `gon`
 signs:
-  - artifacts: checksum
+  # - artifacts: checksum
   - signature: "${artifact}.dmg"
     # XXX: builds is not a valid attribute for signs, but if it were that would allow us to limit notarization to only the macos binaries(s)
     # builds: ["macos"]
