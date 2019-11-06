@@ -1,0 +1,54 @@
+project_name: goreleaser-gon-poc
+
+builds:
+  - binary: goreleaser-gon-poc
+    id: windows
+    goos:
+      - windows
+    goarch:
+      - amd64
+
+  - binary: goreleaser-gon-poc
+    id: macos
+    goos:
+      - darwin
+    goarch:
+      - amd64
+
+  - binary: goreleaser-gon-poc
+    id: linux
+    goos:
+      - linux
+    goarch:
+      - amd64
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - Merge pull request
+      - Merge branch
+
+# GPG signing and macOS codesigning + notarization with `gon`
+signs:
+  - artifacts: checksum
+  - signature: "${artifact}.dmg"
+    # XXX: builds is not a valid attribute for signs, but if it were that would allow us to limit notarization to only the macos binaries(s)
+    # builds: ["macos"]
+    cmd: gon
+    args: ["gon.hcl"]
+    artifacts: all
+
+archives:
+  # binary-only releasess - all platforms
+  - id: binaries
+    builds: ["linux", "macos", "windows"]
+    format: binary
+  # archive releases containg: binary, readme, and license. tarballs (macos, linux), zip (windows)
+  - id: archives
+    builds: ["linux", "macos", "windows"]
+    format_overrides:
+      - goos: windows
+        format: zip
