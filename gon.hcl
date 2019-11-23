@@ -1,8 +1,9 @@
 source = ["./dist/macos_darwin_amd64/goreleaser-gon-poc"]
+
 bundle_id = "me.joemiller.goreleaser-gon-poc"
 
 apple_id {
-  username = "@env:AC_USERNAME"
+  // username: set env var AC_USERNAME, or set your email addr here
   password = "@env:AC_PASSWORD"
 }
 
@@ -18,3 +19,4 @@ dmg {
 // zip {
 //   output_path = "terraform.zip"
 // }
+
